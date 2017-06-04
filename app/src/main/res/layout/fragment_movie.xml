@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/movieContentLayout"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/square_gray_corners"
+            android:id="@+id/relativeLayout">
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinner_arrays"
+                android:prompt="@string/spinner_prompt"
+                android:id="@+id/spinnerMovie"
+                android:gravity="center|center_vertical"
+                android:spinnerMode="dropdown"
+                />
+
+        </RelativeLayout>
+
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawSelectorOnTop="true"
+            android:numColumns="2"
+            android:id="@+id/movieGrid"
+            android:horizontalSpacing="15sp"
+            android:verticalSpacing="15sp"
+            android:columnWidth="110dp"
+            android:stretchMode="columnWidth"
+            android:layout_below="@+id/relativeLayout" />
+
+    </RelativeLayout>
+
+</FrameLayout>

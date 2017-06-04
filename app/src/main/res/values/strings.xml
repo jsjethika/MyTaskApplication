@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">FluxTask</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="splash_text">Hi,I am Jethika</string>
+
+    <string-array name="mainTabTitle">
+        <item>Login</item>
+        <item>Grid View</item>
+    </string-array>
+
+
+    <string name="networkMsg"> Pls check the network connection</string>
+
+    <string name="gPlus">Login/Signup with Google +</string>
+
+    <string name="gPlusLogout">you are not Login</string>
+
+    <string name="loading">pls wait its loading.....</string>
+
+    <string name="spinner_prompt">Choose a movie based</string>
+
+    <string-array name="spinner_arrays">
+        <item>Popular Movie</item>
+        <item>Now Showing Movie</item>
+        <item>Rated Movie</item>
+        <item>Upcoming Movie</item>
+    </string-array>
+
+
+</resources>

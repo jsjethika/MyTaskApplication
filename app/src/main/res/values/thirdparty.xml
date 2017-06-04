@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Google -->
+    <string name="API_Key">AIzaSyBCszJ0XxlsJFoOiVuglqWz_oZZFRdO9wE</string>
+    <string name="G_PROJECT_ID">fluxtask</string>
+    <string name="G_PROJECT_NUMBER">863262711846</string>
+    <string name="G_CLIENT_ID">863262711846-fhp7ctl3jg4328bnvpp2n18hnstutfk8.apps.googleusercontent.com
+</string>
+
+
+    <!-- themoviedb -->
+ <string name="API_Key_movie">af2376a4bce5a67a0fcdc0c7c35d4013</string>
+  <string name="Access_Token">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjIzNzZhNGJjZTVhNjdhMGZjZGMwYzdjMzVkNDAxMyIsInN1YiI6IjU5MmZhODRiYzNhMzY4NDdlMzAwNDQ3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fFS6KKbuXSQkz2Putzv8HfrcwEJD1Norcc_KgTYxGyw</string>
+
+    <string name="popular_movie">https://api.themoviedb.org/3/movie/popular?api_key={api_key}&amp;language=en-US&amp;page=1</string>
+
+    <string name="nowPlaying_movie">https://api.themoviedb.org/3/movie/now_playing?api_key={api_key}&amp;language=en-US&amp;page=1</string>
+
+    <string name="top_rated_movie">https://api.themoviedb.org/3/movie/top_rated?api_key={api_key}&amp;language=en-US&amp;page=1</string>
+
+    <string name="upcoming_movie">https://api.themoviedb.org/3/movie/upcoming?api_key={api_key}&amp;language=en-US&amp;page=1</string>
+
+</resources>

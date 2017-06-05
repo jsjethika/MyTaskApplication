@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.android.fluktask.mytaskapplication.R;
 import com.android.fluktask.mytaskapplication.pojos.upcomingMovie.Results;
 import com.android.fluktask.mytaskapplication.pojos.upcomingMovie.UpcomingMovieResponse;
@@ -31,7 +30,7 @@ public class UpcomingMovieGridAdapter extends BaseAdapter {
 
     UpcomingMovieResponse upcomingMovieResponse;
 
-    private List<Results> itemResponseList;
+    private List<Results> itemResponseList = new ArrayList<>();
     private List<Results> responseList;
 
     public UpcomingMovieGridAdapter(Activity activity, UpcomingMovieResponse upcomingMovieResponse) {

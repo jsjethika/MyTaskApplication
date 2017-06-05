@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.fluktask.mytaskapplication.AppTool;
@@ -53,15 +54,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @ViewById(R.id.tabLayout)
     TabLayout tabLayout;
-
-    @ViewById(R.id.profileImage)
-    ImageView profileImage;
-
-    @ViewById(R.id.profileUserName)
-    TextView profileUserName;
-
-    @ViewById(R.id.profileUserId)
-    TextView profileUserId;
 
     @OptionsMenuItem(R.id.action_search)
     MenuItem searchMenu;
@@ -149,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -167,7 +159,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             signOut();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -181,7 +172,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         @Override
                         public void onResult(Status status) {
                             googleSignInAccount = null;
-                            finishAndRemoveTask();
+                            finish();
+                            System.exit(0);
                         }
                     });
         }else {
@@ -202,9 +194,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.googleSignInAccount = googleSignInAccount;
         if(null != googleSignInAccount){
 
-            Picasso.with(this).load(googleSignInAccount.getPhotoUrl()).into(profileImage);
+            View navHeader = navigationView.getHeaderView(0);
+            ImageView profileImage = (ImageView) navHeader.findViewById(R.id.profileImage);
+            TextView profileUserName = (TextView) navHeader.findViewById(R.id.profileUserName);
+            TextView profileUserId = (TextView) navHeader.findViewById(R.id.profileUserId);
+
             profileUserName.setText(googleSignInAccount.getDisplayName());
             profileUserId.setText(googleSignInAccount.getEmail());
+
+            Picasso.with(MainActivity.this).load(googleSignInAccount.getPhotoUrl())
+                    .placeholder(android.R.drawable.btn_star)
+                    .error(android.R.drawable.btn_star)
+                    .into(profileImage);
+
 
             return;
         }

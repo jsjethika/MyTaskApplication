@@ -5,13 +5,10 @@ import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.ResponseHandlerInterface;
 import com.loopj.android.http.SyncHttpClient;
 
-import cz.msebera.android.httpclient.HttpEntity;
-import cz.msebera.android.httpclient.entity.StringEntity;
+import java.security.KeyStore;
 
 /**
  * Created by admin on 6/2/2017.
@@ -44,6 +41,18 @@ public class HttpManager {
             syncHttpClient.setConnectTimeout(DEFAULT_TIMEOUT);
             syncHttpClient.setResponseTimeout(DEFAULT_TIMEOUT);
 
+                        // SSL
+            AppSSLSocketFactory appSSLSocketFactory = null;
+            try {
+
+                KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+                trustStore.load(null, null);
+                appSSLSocketFactory = new AppSSLSocketFactory(trustStore);
+                appSSLSocketFactory.setHostnameVerifier(AppSSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+            } catch (Exception ex) {
+                Log.e(TAG, ex.toString());
+            }
+            syncHttpClient.setSSLSocketFactory(appSSLSocketFactory);
 
 
             return syncHttpClient;
@@ -52,7 +61,18 @@ public class HttpManager {
         asyncHttpClient.setTimeout(DEFAULT_TIMEOUT);
         asyncHttpClient.setConnectTimeout(DEFAULT_TIMEOUT);
         asyncHttpClient.setResponseTimeout(DEFAULT_TIMEOUT);
+        // SSL
+        AppSSLSocketFactory appSSLSocketFactory = null;
+        try {
 
+            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            trustStore.load(null, null);
+            appSSLSocketFactory = new AppSSLSocketFactory(trustStore);
+            appSSLSocketFactory.setHostnameVerifier(AppSSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        } catch (Exception ex) {
+            Log.e(TAG, ex.toString());
+        }
+        asyncHttpClient.setSSLSocketFactory(appSSLSocketFactory);
 
         return asyncHttpClient;
     }

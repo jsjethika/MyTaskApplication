@@ -204,6 +204,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Goo
         } else {
 
             errorText.setVisibility(View.GONE);
+            hideProgressDialog();
             signIn();
         }
     }
@@ -294,11 +295,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Goo
 
     private void updateUI(boolean isSignedIn) {
         if (isSignedIn) {
-            loginLayout.setVisibility(View.VISIBLE);
-            alreadyLoginLayout.setVisibility(View.GONE);
-        } else {
             loginLayout.setVisibility(View.GONE);
             alreadyLoginLayout.setVisibility(View.VISIBLE);
+        } else {
+            loginLayout.setVisibility(View.VISIBLE);
+            alreadyLoginLayout.setVisibility(View.GONE);
         }
     }
 

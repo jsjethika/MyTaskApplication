@@ -71,20 +71,28 @@ public class MovieFragment extends Fragment implements OnNetworkChangeListener, 
         NetworkUtil.setOnNetworkChangeListener(this);
 
         initializeControls();
-        getPopularMovies();
+
     }
 
     private void initializeControls(){
+
+        //set the default according to value
+        spinnerMovie.setSelection(0);
 
         spinnerMovieData = spinnerMovie.getSelectedItem().toString();
         Log.d(TAG, "spinnerMovieData: " + spinnerMovieData);
 
         spinnerMovie.setOnItemSelectedListener(this);
 
-        movieGrid.setVisibility(View.GONE);
-        showProgressDialog();
-
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        showProgressDialog();
+        getPopularMovies();
+    }
+
 
     @Override
     public void onChange(String status) {
@@ -136,6 +144,7 @@ public class MovieFragment extends Fragment implements OnNetworkChangeListener, 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchItem.setVisible(true);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         //*** setOnQueryTextFocusChangeListener ***
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -246,7 +255,7 @@ public class MovieFragment extends Fragment implements OnNetworkChangeListener, 
     @UiThread
     public void callNowShowingMoviesProcessFinish(NowShowingMovieResponse nowShowingMovieResponse) {
         hideProgressDialog();
-        movieContentLayout.setVisibility(View.VISIBLE);
+        movieGrid.invalidate();
 
         nowShowingMovieGridAdapter = new NowShowingMovieGridAdapter(getActivity(),nowShowingMovieResponse);
         movieGrid.setAdapter(nowShowingMovieGridAdapter);
@@ -282,7 +291,7 @@ public class MovieFragment extends Fragment implements OnNetworkChangeListener, 
     @UiThread
     public void callRatedMoviesProcessFinish(TopRatedMovieResponse topRatedMovieResponse) {
         hideProgressDialog();
-        movieContentLayout.setVisibility(View.VISIBLE);
+        movieGrid.invalidate();
 
         topRatedMovieGridAdapter = new TopRatedMovieGridAdapter(getActivity(),topRatedMovieResponse);
         movieGrid.setAdapter(topRatedMovieGridAdapter);
@@ -318,7 +327,7 @@ public class MovieFragment extends Fragment implements OnNetworkChangeListener, 
     @UiThread
     public void callUpcomingMoviesProcessFinish(UpcomingMovieResponse upcomingMovieResponse) {
         hideProgressDialog();
-        movieContentLayout.setVisibility(View.VISIBLE);
+        movieGrid.invalidate();
 
         upcomingMovieGridAdapter = new UpcomingMovieGridAdapter(getActivity(),upcomingMovieResponse);
         movieGrid.setAdapter(upcomingMovieGridAdapter);
